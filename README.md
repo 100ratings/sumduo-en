@@ -1,18 +1,28 @@
-# Calculadora
+# Calculator (US English)
 
-Versão estática da calculadora, pronta para publicação no GitHub Pages.
+A static, installable calculator for GitHub Pages, using US English number formatting. The appearance and both secret methods are preserved from the original version.
 
-## Publicar no GitHub Pages
+## Publish on GitHub Pages
 
-1. Crie um repositório no GitHub.
-2. Envie todos os arquivos desta pasta para a raiz do repositório.
-3. Em **Settings > Pages**, selecione **Deploy from a branch**, escolha a branch principal e a pasta `/ (root)`.
-4. Abra a URL fornecida pelo GitHub.
+1. Create a GitHub repository
+2. Upload all files to its root directory
+3. In **Settings > Pages**, select **Deploy from a branch**, choose the main branch, and select **/(root)**
+4. Open the GitHub Pages URL
 
-O arquivo `index.html` é a entrada do site. O manifesto PWA usa o nome **Calculadora** e os números exibem pontos como separadores de milhares, por exemplo `123.456.789`.
+`index.html` is the entry point. The PWA manifest installs with the name **Calculator**. Numbers use commas for thousands and periods for decimals, such as `123,456,789` and `1,234.56`.
 
-## Modos secretos
+## Secret modes
 
-Digite um número e toque no relógio para salvar o número e selecionar o truque clássico. O ícone da calculadora no canto superior direito configura esse mesmo truque com a data e a hora locais atuais, concatenadas como dia, mês, ano com dois algarismos e hora/minuto em formato de 24 horas. O ano é omitido se a combinação ultrapassar nove algarismos. Antes de tocar no ícone, digite um único algarismo de `1` a `9` para adiantar o alvo em essa quantidade de minutos. Digite um número e toque no botão `+/-` para salvar o número e selecionar o novo truque do botão `+`. O número e o último modo escolhido permanecem salvos mesmo depois de fechar o aplicativo, até o truque ser concluído.
+Enter a number and tap the **clock** icon to save it as the target for the classic force. The **calculator** icon at the top right instead creates a classic-force target from the current local date and time in US order: **month + day + two-digit year + hour + minute**. The year is omitted if the concatenation would exceed nine digits. Hours remain in 24-hour format, and month and day are not zero-padded. To move the target ahead by one to nine minutes, enter a single digit from `1` to `9` before tapping that icon.
 
-Uma pressão longa no botão `,` revela temporariamente o número salvo. Uma pressão curta continua inserindo o separador decimal normalmente. No modo novo, um número já digitado pode permanecer visível; toque em `+`, digite o número do espectador e pressione `=` para concluir. Nesse momento, a expressão é ajustada para que o resultado seja o número configurado e, após a conclusão, a configuração é removida automaticamente. O `AC` funciona somente como limpeza normal. Uma pressão longa no botão de apagar faz o reset completo e remove a configuração salva.
+Enter a number and tap the **+/−** key to store it as the target for the alternate addition effect. The stored target and selected mode persist across app restarts until the effect is completed.
+
+**Press and hold the decimal key (`.`)** to temporarily reveal the stored number. A short press enters the decimal point normally. In the alternate effect, a number already on screen may stay visible: tap **+**, enter the spectator's number, then press **=** to finish. The displayed expression is adjusted so that the answer matches the configured target; afterward, the stored configuration is automatically cleared.
+
+**AC** only clears the usual calculator state. **Press and hold Delete** to fully reset the calculator and clear the stored target.
+
+## Installation and offline use
+
+The service worker caches the app for offline use. Updating to this US English version replaces the previous calculator cache. On an already installed iPhone app, you may need to remove it from the Home Screen and add it again to refresh its displayed name.
+
+The layout targets modern iPhones in portrait orientation. Very short screens may need a separate compact layout.

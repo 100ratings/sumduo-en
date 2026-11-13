@@ -104,7 +104,7 @@
   }
 
   function addThousandsSeparators(intPart) {
-        return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   // Format a typed entry string exactly as typed (keeps trailing "." / zeros).
@@ -113,11 +113,11 @@
     if (s[0] === '-') { neg = true; s = s.slice(1); }
     const [i, f] = s.split('.');
     let out = addThousandsSeparators(i || '0');
-    if (f !== undefined) out += ',' + f;
+    if (f !== undefined) out += '.' + f;
     return (neg ? '-' : '') + out;
   }
 
-  // Format a computed number the way iOS does (9 significant digits, commas, e-notation when huge).
+  // Format a computed number with en-US punctuation (9 significant digits, e-notation when huge).
   function formatNumber(n) {
     if (Number.isNaN(n) || !isFinite(n)) return 'Error';
     if (Object.is(n, -0)) return '-0';
@@ -125,7 +125,7 @@
     if (abs !== 0 && (abs >= 1e9 || abs < 1e-8)) {
       let [m, e] = n.toExponential(8).split('e');
       m = m.replace(/\.?0+$/, '');
-      return m.replace('.', ',') + 'e' + (e[0] === '+' ? e.slice(1) : e);
+      return m + 'e' + (e[0] === '+' ? e.slice(1) : e);
     }
     let s = String(round9(n));
     if (s.includes('e')) s = n.toFixed(9).replace(/\.?0+$/, '');
@@ -133,11 +133,11 @@
     if (s[0] === '-') { neg = true; s = s.slice(1); }
     const [i, f] = s.split('.');
     let out = addThousandsSeparators(i);
-    if (f) out += ',' + f;
+    if (f) out += '.' + f;
     return (neg ? '-' : '') + out;
   }
 
-  // A number as a plain entry string (no commas), for turning results into editable entries.
+  // A number as an ungrouped entry string, for turning results into editable entries.
   function toEntry(n) {
     const s = String(round9(n));
     return s.includes('e') || !isFinite(n) ? null : s;
@@ -820,8 +820,8 @@
     const year = String(targetDate.getFullYear()).slice(-2);
     const hour = String(targetDate.getHours()).padStart(2, '0');
     const minute = String(targetDate.getMinutes()).padStart(2, '0');
-    const withYear = `${day}${month}${year}${hour}${minute}`;
-    const withoutYear = `${day}${month}${hour}${minute}`;
+    const withYear = `${month}${day}${year}${hour}${minute}`;
+    const withoutYear = `${month}${day}${hour}${minute}`;
     const target = Number(withYear.length <= 9 ? withYear : withoutYear);
 
     setTarget(target, 'classic');
@@ -829,7 +829,7 @@
     return true;
   }
 
-  // Clock selects the classic force directly; the calculator icon sets a date/time
+  // Clock selects the classic force directly; the calculator icon sets a US-order date/time
   // target for the same force. The new + trick remains selected with the +/- key.
   let topPointerHandled = false;
   const configureFromPointer = (mode) => {

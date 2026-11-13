@@ -1,4 +1,5 @@
-const CACHE_NAME = 'calculadora-v1';
+const CACHE_NAME = 'sumduo-en-v2';
+const CACHE_PREFIX = 'sumduo-en-';
 const ASSETS = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest', './calc-icon.png'];
 
 self.addEventListener('install', (event) => {
@@ -7,7 +8,13 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys
+        .filter((key) => key !== CACHE_NAME && (key.startsWith(CACHE_PREFIX) || key === 'calculadora-v1'))
+        .map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener('fetch', (event) => {

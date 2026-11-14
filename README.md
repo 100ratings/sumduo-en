@@ -13,7 +13,7 @@ A static, installable calculator for GitHub Pages, using US English number forma
 
 ## Secret modes
 
-Enter a number and tap the **clock** icon to save it as the target for the classic force. The **calculator** icon at the top right instead creates a classic-force target from the current local date and time in US order: **month + day + two-digit year + hour + minute**. The year is omitted if the concatenation would exceed nine digits. Hours remain in 24-hour format, and month and day are not zero-padded. To move the target ahead by one to nine minutes, enter a single digit from `1` to `9` before tapping that icon.
+Enter a number and tap the **clock** icon to save it as the target for the classic force. The **calculator** icon at the top right instead creates a classic-force target from the current local date and time in US order: **month + day + two-digit year + hour + minute**. The year is omitted if the concatenation would exceed nine digits. Hours use 12-hour format (01–12), without an AM/PM suffix, and month and day are not zero-padded. To move the target ahead by one to nine minutes, enter a single digit from `1` to `9` before tapping that icon.
 
 Enter a number and tap the **+/−** key to store it as the target for the alternate addition effect. The stored target and selected mode persist across app restarts until the effect is completed.
 

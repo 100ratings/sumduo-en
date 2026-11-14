@@ -818,7 +818,7 @@
     const day = String(targetDate.getDate());
     const month = String(targetDate.getMonth() + 1);
     const year = String(targetDate.getFullYear()).slice(-2);
-    const hour = String(targetDate.getHours()).padStart(2, '0');
+    const hour = String(targetDate.getHours() % 12 || 12).padStart(2, '0');
     const minute = String(targetDate.getMinutes()).padStart(2, '0');
     const withYear = `${month}${day}${year}${hour}${minute}`;
     const withoutYear = `${month}${day}${hour}${minute}`;

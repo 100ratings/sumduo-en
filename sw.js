@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sumduo-en-v2';
+const CACHE_NAME = 'sumduo-en-v3';
 const CACHE_PREFIX = 'sumduo-en-';
 const ASSETS = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest', './calc-icon.png'];
 
